@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Login from '../components/Authentication/Login'
 import Signup from '../components/Authentication/Signup'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -77,6 +78,12 @@ const Tabs = ({ color }) => {
 };
 
 export default function HomePage() {
+    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    useEffect(() => {
+
+        if (user) navigate("/chats");
+    }, [navigate])
     return (
         <>
             <Tabs color="cyan" />
